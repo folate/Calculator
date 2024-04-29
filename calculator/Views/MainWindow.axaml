@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:calculator.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sg="clr-namespace:SpacedGridControl.Avalonia;assembly=SpacedGridControl.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        MaxWidth="400" MinWidth="400"
+        MaxHeight="550" MinHeight="550"
+        x:Class="calculator.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="calculator">
+    <Window.Styles>
+        <StyleInclude Source="/Styles.axaml" />
+    </Window.Styles>
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*,*" RowDefinitions="3*,9*">
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" FontSize="42" VerticalAlignment="Bottom" TextAlignment="Right" Text="{Binding Expression}"></TextBlock>
+        <sg:SpacedGrid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" RowDefinitions="Auto,8*" RowSpacing="4">
+            <sg:SpacedGrid ColumnSpacing="4" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*">
+                <Button Classes="t" Command="{Binding MemoryOperator}" CommandParameter="MC"><Label>MC</Label></Button>
+                <Button Grid.Column="1" Classes="t" Command="{Binding MemoryOperator}" CommandParameter="MR"><Label>MR</Label></Button>
+                <Button Grid.Column="2" Classes="t" Command="{Binding MemoryOperator}" CommandParameter="M+"><Label>M+</Label></Button>
+                <Button Grid.Column="3" Classes="t" Command="{Binding MemoryOperator}" CommandParameter="M-"><Label>M-</Label></Button>
+                <Button Grid.Column="4" Classes="t" Command="{Binding MemoryOperator}" CommandParameter="MS"><Label>MS</Label></Button>
+                <Button Grid.Column="5" Classes="t" Command="{Binding MemoryOperator}" CommandParameter="Mv"><Label>Mv</Label></Button>
+            </sg:SpacedGrid>
+            <sg:SpacedGrid Grid.Row="1" ColumnSpacing="4" RowSpacing="4" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*,*">
+                    <Button Grid.Column="0" Grid.Row="0" Classes="b" Content="%" Command="{Binding AddCommand}" CommandParameter="percent"/>
+                    <Button Grid.Column="1" Grid.Row="0" Classes="b" Content="CE" Command="{Binding AddCommand}" CommandParameter="ce"/>
+                    <Button Grid.Column="2" Grid.Row="0" Classes="b" Content="C" Command="{Binding AddCommand}" CommandParameter="c"/>
+                    <Button Grid.Column="3" Grid.Row="0" Classes="b" Content="&lt;-" Command="{Binding AddCommand}" CommandParameter="remove"/>
+                    <Button Grid.Column="0" Grid.Row="1" Classes="b" Content="1/x" Command="{Binding AddCommand}" CommandParameter="reciproc"/>
+                    <Button Grid.Column="1" Grid.Row="1" Classes="b" Content="x^2" Command="{Binding AddCommand}" CommandParameter="square"/>
+                    <Button Grid.Column="2" Grid.Row="1" Classes="b" Content="sqrt" Command="{Binding AddCommand}" CommandParameter="sqrt"/>
+                    <Button Grid.Column="3" Grid.Row="1" Classes="b" Content="/" Command="{Binding AddCommand}" CommandParameter="/"/>
+                    <Button Grid.Column="0" Grid.Row="2" Classes="b" Content="7" Command="{Binding AddCommand}" CommandParameter="7"/>
+                    <Button Grid.Column="1" Grid.Row="2" Classes="b" Content="8" Command="{Binding AddCommand}" CommandParameter="8"/>
+                    <Button Grid.Column="2" Grid.Row="2" Classes="b" Content="9" Command="{Binding AddCommand}" CommandParameter="9"/>
+                    <Button Grid.Column="3" Grid.Row="2" Classes="b" Content="*" Command="{Binding AddCommand}" CommandParameter="*"/>
+                    <Button Grid.Column="0" Grid.Row="3" Classes="b" Content="4" Command="{Binding AddCommand}" CommandParameter="4"/>
+                    <Button Grid.Column="1" Grid.Row="3" Classes="b" Content="5" Command="{Binding AddCommand}" CommandParameter="5"/>
+                    <Button Grid.Column="2" Grid.Row="3" Classes="b" Content="6" Command="{Binding AddCommand}" CommandParameter="6"/>
+                    <Button Grid.Column="3" Grid.Row="3" Classes="b" Content="-" Command="{Binding AddCommand}" CommandParameter="-"/>
+                    <Button Grid.Column="0" Grid.Row="4" Classes="b" Content="1" Command="{Binding AddCommand}" CommandParameter="1"/>
+                    <Button Grid.Column="1" Grid.Row="4" Classes="b" Content="2" Command="{Binding AddCommand}" CommandParameter="2"/>
+                    <Button Grid.Column="2" Grid.Row="4" Classes="b" Content="3" Command="{Binding AddCommand}" CommandParameter="3"/>
+                    <Button Grid.Column="3" Grid.Row="4" Classes="b" Content="+" Command="{Binding AddCommand}" CommandParameter="+"/>
+                    <Button Grid.Column="0" Grid.Row="5" Classes="b" Content="+/-" Command="{Binding AddCommand}" CommandParameter="ptm"/>
+                    <Button Grid.Column="1" Grid.Row="5" Classes="b" Content="0" Command="{Binding AddCommand}" CommandParameter="0"/>
+                    <Button Grid.Column="2" Grid.Row="5" Classes="b" Content="," Command="{Binding AddCommand}" CommandParameter=","/>
+                    <Button Grid.Column="3" Grid.Row="5" Classes="b" Content="=" Command="{Binding AddCommand}" CommandParameter="="/>
+                </sg:SpacedGrid>
+        </sg:SpacedGrid>
+    </Grid>
+
+</Window>
